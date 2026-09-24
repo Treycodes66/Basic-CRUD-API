@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-# fake DB for now — swap for real storage later
+# fake DB 
 tasks = [
     {"id": 1, "title": "Buy groceries", "done": False},
     {"id": 2, "title": "Complete backend assignment", "done": False},
@@ -53,7 +53,7 @@ def create_task(task_data: TaskCreate):
     if not title:
         raise HTTPException(status_code=400, detail={"error": "Title cannot be empty"})
 
-    # just bump off the last id — fine for an in-memory toy API
+    # just bump off the last id 
     new_id = tasks[-1]["id"] + 1 if tasks else 1
     new_task = {"id": new_id, "title": title, "done": False}
     tasks.append(new_task)
